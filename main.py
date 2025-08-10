@@ -14,6 +14,13 @@ def go(message):
     else:
         bot.reply_to(message, "Ты уже создал себе покемона")
 
+@bot.message_handler(commands=['reroll'])
+def go(message):
+    pokemon = Pokemon(message.from_user.username)
+    bot.send_message(message.chat.id, pokemon.info())
+    bot.send_photo(message.chat.id, pokemon.show_img())
+
+
 
 bot.infinity_polling(none_stop=True)
 
